@@ -2,9 +2,13 @@ const sauce = require('../Models/sauce')
 const fs = require('fs')
 
 exports.saucesGet=(req,res)=>{
+    // console.log('t')
     sauce.find()
-    .then(sauce=>
-        res.status(200).json(sauce))
+    // .then(sauce => {
+    //     console.log(sauce.length)
+    //     return res.status(200).json(sauce)
+    // })
+    .then(sauce=>res.status(200).json(sauce))
     .catch(error=>res.status(404).json({error}))
 }
 
@@ -35,8 +39,8 @@ exports.saucesPost=(req,res)=>{
     usersDisliked:[]
     })
     sauces.save()
-        .then(()=>res.status(201).json({message:'sauce crée'+req.body}))
-        .catch(error=>res.status(400).json({error}))
+    .then(()=>res.status(201).json({message:'sauce crée'}))
+    .catch(error=>res.status(400).json({error}))
 }
 
 exports.saucePut=(req,res)=>{
@@ -70,7 +74,7 @@ exports.saucePut=(req,res)=>{
                 description:newContent.description,
                 mainPepper:newContent.mainPepper,
                 heat:newContent.heat,
-                })
+            })
             .then(()=>res.status(200).json({message:'ok'}))
             
         }
